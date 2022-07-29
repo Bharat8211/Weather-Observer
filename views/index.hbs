@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="main-container">
+        <p id="demo"></p>
+        <div class="location-and-date">
+            <button class="geoLocation" onclick="getLocation()">Try It</button>
+
+            <h1>05:10 Am</h1>
+            <h1 class="location-and-date__location">London, UK</h1>
+            <div>{{dayAndDate}}</div>
+        </div>
+
+
+        <div class="current-temperature">
+            <div class="current-temperature__icon-container">
+                <img src="icons/{{image}}.png" class="current-temperature__icon" alt="">
+            </div>
+            <div class="current-temperature__content-container">
+                <div class="current-temperature__value">{{temperature}}&deg;</div>
+                <div id="desc" class="current-temperature__summary">{{description}}</div>
+            </div>
+        </div>
+
+
+        <div class="current-stats">
+            <div>
+                <div class="current-stats__value">{{maxTemp}}&deg;</div>
+                <div class="current-stats__label">High</div>
+                <div class="current-stats__value">{{minTemp}}&deg;</div>
+                <div class="current-stats__label">Low</div>
+            </div>
+            <div>
+                <div class="current-stats__value">{{windSpeed}} mph</div>
+                <div class="current-stats__label">Wind</div>
+                <div class="current-stats__value">{{humid}}%</div>
+                <div class="current-stats__label">Humidity</div>
+            </div>
+            <div>
+                <div id="t1" class="current-stats__value">{{sunriseTime}}</div>
+                <div class="current-stats__label">Sunrise</div>
+                <div id="t2" class="current-stats__value t2">{{sunsetTime}}</div>
+                <div class="current-stats__label">Sunset</div>
+            </div>
+        </div>
+
+        <div class="weather-by-hour">
+            <h2 class="weather-by-hour__heading">Today's weather</h2>
+            <div class="weather-by-hour__container">
+                {{#each hourlyWeather.hourly}}
+                <div class="weather-by-hour__item">
+                    <div class="weather-by-hour__hour">{{time}}</div>
+                    <img class="icon2" src="icons/{{image}}.png" alt="Mostly sunny">
+                    <div>{{temparature}}&deg;</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+
+        <div class="next-5-days">
+            <h2 class="next-5-days__heading">Next 6 days</h2>
+            <div class="next-5-days__container">
+
+                {{#each dailyWeather.daily}}
+
+                <div class="next-5-days__row">
+
+                    <div class="next-5-days__date">
+                        {{day}}
+                        <div class="next-5-days__label">{{date}}</div>
+                    </div>
+
+                    <div class="next-5-days__low">
+                        {{min}}&deg;|{{max}}&deg;
+                        <div class="next-5-days__label l1">Min|Max</div>
+                    </div>
+
+                    <div class="next-5-days__high">
+                        {{dayTemp}}&deg;|{{nightTemp}}&deg;
+                        <div class="next-5-days__label l2"> Day|Night</div>
+                    </div>
+
+                    <div class="next-5-days__icon">
+                        <img class="icon3" src="icons/{{icon}}.png" alt="Sunny">
+                    </div>
+
+                    <div class="next-5-days__rain">
+                        {{humid}}%
+                        <div class="next-5-days__label">Humidity</div>
+                    </div>
+
+                    <div class="next-5-days__wind">
+                        {{wind}} mph
+                        <div class="next-5-days__label">Wind</div>
+                    </div>
+
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/index.js"></script>
+    <script src="js/getLocation.js"></script>
+</body>
+
+</html>
